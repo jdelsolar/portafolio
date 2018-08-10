@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { InfoPaginaService } from './services/info-pagina.service';
 
 import { HttpClientModule } from '@angular/common/http'
+import { ProductosService } from './services/productos.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { HttpClientModule } from '@angular/common/http'
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [ InfoPaginaService ],
+  providers: [ InfoPaginaService, ProductosService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
