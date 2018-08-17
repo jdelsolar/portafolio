@@ -25,6 +25,12 @@ export class ProductosService {
         console.log(resp);
       });
   }
+
+  getProducto(id: string) {
+    return this.http.get(
+      `https://prueba-17547.firebaseio.com/portafolio/productos/${id}.json`
+    );
+  }
 }
 
 export interface Producto {
@@ -32,4 +38,14 @@ export interface Producto {
   cod?: string;
   titulo?: string;
   url?: string;
+}
+
+export interface Descripcion {
+  categoria?: string;
+  desc1?: string;
+  desc2?: string;
+  producto?: string;
+  resumen?: string;
+  subtitulo1?: string;
+  subtitulo2?: string;
 }
