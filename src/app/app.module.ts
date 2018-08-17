@@ -13,6 +13,8 @@ import { InfoPaginaService } from './services/info-pagina.service';
 
 import { HttpClientModule } from '@angular/common/http'
 import { ProductosService } from './services/productos.service';
+import { BuscarComponent } from './pages/buscar/buscar.component';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { ProductosService } from './services/productos.service';
     FooterComponent,
     PortafolioComponent,
     AboutComponent,
-    ItemComponent
+    ItemComponent,
+    BuscarComponent
   ],
   imports: [
     BrowserModule,

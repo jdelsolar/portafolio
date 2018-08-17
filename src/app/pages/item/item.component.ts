@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductosService, Descripcion } from '../../services/productos.service';
+import { APP_BASE_HREF } from '../../../../node_modules/@angular/common';
 
 @Component({
   selector: 'app-item',
@@ -26,7 +27,7 @@ export class ItemComponent implements OnInit {
         this.desc = resp;
 
         console.log(resp);
-
+        
       });
       
     });

@@ -3,8 +3,10 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
 @Injectable()
-export class ProductosService {
+export class ProductosService { 
   productos: Producto[] = [];
+
+  productosFiltrado: Producto[] = [];
 
   cargando: boolean = true;
 
@@ -12,18 +14,58 @@ export class ProductosService {
     this.cargar_productos();
   }
 
+  buscarProducto(termino: string) {
+
+    if ( this.productos.length === 0 ) {
+      this.cargar_productos().then( () => {
+        // ahora si estan cargados
+        // filtrar
+        this.filtrarProductos(termino);
+      });
+    } else {
+      // filtrar 
+      this.filtrarProductos(termino);
+    }
+
+    
+  }
+
+  private filtrarProductos( termino: string ) {
+    
+    this.productosFiltrado = [];
+    
+    this.productos.forEach( prod => {
+
+      let tituloLower = prod.titulo.toLowerCase();
+      if( prod.categoria.indexOf( termino ) >= 0 || tituloLower.indexOf( termino ) >= 0 ) {
+        this.productosFiltrado.push( prod );
+      }
+    })
+
+    
+  }
+
   cargar_productos() {
     this.cargando = true;
 
-    this.http
+    let promesa = new Promise( (resolve, reject) => {
+
+      this.http
       .get("https://prueba-17547.firebaseio.com/portafolio/productos_idx.json")
       .subscribe((resp: Producto[]) => {
         this.productos = resp;
 
         this.cargando = false;
 
-        console.log(resp);
+        resolve();
+        
       });
+
+    });
+
+    return promesa;
+
+    
   }
 
   getProducto(id: string) {
